@@ -440,8 +440,8 @@ button:hover {
   [ Social item ]*/
 .login100-social-item {
   font-size: 25px;
-  color: #fff;
-
+  color: #fff !important;
+  cursor: pointer;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
