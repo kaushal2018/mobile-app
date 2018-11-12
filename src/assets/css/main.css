@@ -181,6 +181,18 @@ button:hover {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+
+  background-color: #a64bf4;
+  background: -webkit-linear-gradient(
+    right,
+    #00dbde,
+    #fc00ff,
+    #00dbde,
+    #fc00ff
+  );
+  background: -o-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+  background: -moz-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+  background: linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
 }
 
 .wrap-login100 {
@@ -458,6 +470,10 @@ button:hover {
 .login100-social-item:hover {
   color: #fff;
   background-color: #333333;
+}
+
+.error {
+  color: red;
 }
 
 /*//////////////////////////////////////////////////////////////////

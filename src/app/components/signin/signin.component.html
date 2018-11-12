@@ -1,37 +1,36 @@
 <div class="limiter">
-  <div class="container-login100" style="background-color:#a64bf4;">
+  <div class="container-login100">
     <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
       <form
+        [formGroup]="loginForm"
         class="login100-form"
-        #formData="ngForm"
-        (ngSubmit)="loginEmail(formData)"
+        (ngSubmit)="onSubmit()"
         novalidate
       >
         <span class="login100-form-title p-b-49"> Login </span>
 
-        <div
-          class="wrap-input100 validate-input m-b-23"
-          data-validate="Username is reauired"
-        >
+        <div class="wrap-input100 validate-input m-b-10">
           <span class="label-input100">Username</span>
           <input
             class="input100"
-            name="username"
+            name="email"
             placeholder="Type your username"
             type="text"
             [formControl]="emailFormControl"
-            required
           />
           <span class="focus-input100" data-symbol="&#xf206;"></span>
         </div>
-        <p
-          *ngIf="
-            emailFormControl.hasError('email') &&
-            !emailFormControl.hasError('required')
-          "
+        <div
+          *ngIf="emailFormControl.errors && !emailFormControl.pristine"
+          class="p-l-7 error"
         >
-          Please <strong>enter a valid email</strong> address
-        </p>
+          <div [hidden]="!emailFormControl.hasError('required')">
+            *Email is required.
+          </div>
+          <div [hidden]="!emailFormControl.hasError('email')">
+            *Email is invalid.
+          </div>
+        </div>
 
         <div
           class="wrap-input100 validate-input"
@@ -43,11 +42,18 @@
             type="password"
             placeholder="Type your password"
             name="password"
-            [type]="hide ? 'password' : 'text'"
             [formControl]="passwordFormControl"
             required
           />
           <span class="focus-input100" data-symbol="&#xf190;"></span>
+        </div>
+        <div
+          class="p-l-7 error"
+          *ngIf="passwordFormControl.errors && !passwordFormControl.pristine"
+        >
+          <div [hidden]="!passwordFormControl.hasError('required')">
+            *Password is required.
+          </div>
         </div>
 
         <div class="text-right p-t-8 p-b-31">
@@ -62,7 +68,7 @@
             <button
               type="submit"
               class="login100-form-btn"
-              [disabled]="!formData.valid"
+              [disabled]="!loginForm.invalid"
             >
               Login
             </button>

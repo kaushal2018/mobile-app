@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-signin',
@@ -16,7 +16,8 @@ export class SigninComponent implements OnInit {
     Validators.email
   ]);
   passwordFormControl = new FormControl('', [Validators.required]);
-  hide = true;
+  loginForm: FormGroup;
+
   constructor(public authService: AuthService, private router: Router) {}
 
   loginGoogle() {
@@ -40,7 +41,7 @@ export class SigninComponent implements OnInit {
     });
   }
 
-  loginEmail(formData) {
+  onSubmit(formData) {
     if (this.emailFormControl.valid && this.passwordFormControl.valid) {
       this.authService
         .loginWithEmail(
@@ -57,5 +58,18 @@ export class SigninComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  private createForm() {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', Validators.required)
+    });
+  }
+
+  public login() {
+    console.log(this.loginForm.value);
+  }
+
+  ngOnInit() {
+    this.createForm();
+  }
 }
