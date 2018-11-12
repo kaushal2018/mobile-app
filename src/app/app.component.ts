@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { Title } from '@angular/platform-browser';
+import { Router, NavigationEnd } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  constructor(private titleService: Title, private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.title = event.url.substr(1) !== '' ? event.url.substr(1) : 'Home';
+        this.titleService.setTitle(this.title.toUpperCase());
+      }
+    });
+  }
 }
