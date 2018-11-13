@@ -4,17 +4,37 @@
       <div class="card card-signin my-5">
         <div class="card-body">
           <h5 class="card-title text-center">Sign In</h5>
-          <form class="form-signin" novalidate>
+          <form
+            class="form-signin"
+            name="form"
+            (ngSubmit)="f.form.valid && onSubmit()"
+            #f="ngForm"
+            novalidate
+          >
             <div class="form-label-group">
               <input
                 type="email"
                 id="inputEmail"
+                name="email"
                 class="form-control"
                 placeholder="Email address"
+                [(ngModel)]="model.email"
+                #email="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
                 required
+                email
                 autofocus
               />
               <label for="inputEmail">Email address</label>
+              <div
+                *ngIf="f.submitted && email.invalid"
+                class="invalid-feedback"
+              >
+                <div *ngIf="email.errors.required">Email is required</div>
+                <div *ngIf="email.errors.email">
+                  Email must be a valid email address
+                </div>
+              </div>
             </div>
             <div class="form-label-group">
               <input
@@ -22,9 +42,23 @@
                 id="inputPassword"
                 class="form-control"
                 placeholder="Password"
+                name="password"
+                [(ngModel)]="model.password"
+                #password="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && password.invalid }"
                 required
+                minlength="6"
               />
               <label for="inputPassword">Password</label>
+              <div
+                *ngIf="f.submitted && password.invalid"
+                class="invalid-feedback"
+              >
+                <div *ngIf="password.errors.required">Password is required</div>
+                <div *ngIf="password.errors.minlength">
+                  Password must be at least 6 characters
+                </div>
+              </div>
             </div>
             <div class="custom-control custom-checkbox mb-3">
               <a routerLink="/forgotpass">Forgot password?</a>

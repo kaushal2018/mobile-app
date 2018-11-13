@@ -126,6 +126,9 @@
   left: 0;
   z-index: 1;
 }
+.invalid-feedback {
+  margin-left: 1.6rem;
+}
 
 @media (max-width: 823px) {
   .card-signin {
