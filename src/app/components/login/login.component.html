@@ -16,7 +16,6 @@
               />
               <label for="inputEmail">Email address</label>
             </div>
-
             <div class="form-label-group">
               <input
                 type="password"
@@ -27,7 +26,6 @@
               />
               <label for="inputPassword">Password</label>
             </div>
-
             <div class="custom-control custom-checkbox mb-3">
               <a routerLink="/forgotpass">Forgot password?</a>
             </div>
@@ -37,27 +35,30 @@
             >
               Sign in
             </button>
-            <hr class="my-4" />
+            <p class="divider-text"><span class="bg-light">OR</span></p>
             <button
               class="btn btn-lg btn-google btn-block text-uppercase"
-              type="submit"
+              (click)="loginGoogle()"
             >
               <i class="fa fa-google mr-2"></i> Sign in with Google
             </button>
             <button
               class="btn btn-lg btn-facebook btn-block text-uppercase"
-              type="submit"
+              (click)="loginFacebook()"
             >
               <i class="fa fa-facebook-f mr-2"></i> Sign in with Facebook
             </button>
-
             <button
               class="btn btn-lg btn-twitter btn-block text-uppercase"
-              type="submit"
+              (click)="loginTwitter()"
             >
               <i class="fa fa-twitter mr-2"></i> Sign in with Twitter
             </button>
           </form>
+          <p class="divider-text"><span class="bg-light">OR</span></p>
+          <a class="text-center registerlink" routerLink="/register">
+            <i class="fa fa-user-plus"></i> Create a new account
+          </a>
         </div>
       </div>
     </div>

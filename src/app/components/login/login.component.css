@@ -4,6 +4,9 @@
 .custom-control {
   text-align: right;
 }
+.registerlink {
+  display: block;
+}
 .card-signin {
   border: 0;
   border-radius: 1rem;
@@ -100,6 +103,28 @@
 .btn-twitter {
   color: white;
   background-color: #38a1f3;
+}
+
+.divider-text {
+  position: relative;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.divider-text span {
+  padding: 7px;
+  font-size: 12px;
+  position: relative;
+  z-index: 2;
+}
+.divider-text:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  top: 55%;
+  left: 0;
+  z-index: 1;
 }
 
 @media (max-width: 823px) {
