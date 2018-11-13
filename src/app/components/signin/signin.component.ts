@@ -41,7 +41,7 @@ export class SigninComponent implements OnInit {
     });
   }
 
-  onSubmit(formData) {
+  onSubmit() {
     if (this.emailFormControl.valid && this.passwordFormControl.valid) {
       this.authService
         .loginWithEmail(
