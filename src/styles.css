@@ -5,14 +5,22 @@
   --input-padding-x: 1.5rem;
   --input-padding-y: 0.75rem;
 }
+
 body {
   background: #9cecfb;
   background: -webkit-linear-gradient(to right, #0052d4, #65c7f7, #9cecfb);
   background: linear-gradient(to right, #0052d4, #65c7f7, #9cecfb);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 823px) {
   body {
     background: none;
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  body {
+    background: #9cecfb;
+    background: -webkit-linear-gradient(to right, #0052d4, #65c7f7, #9cecfb);
+    background: linear-gradient(to right, #0052d4, #65c7f7, #9cecfb);
   }
 }
