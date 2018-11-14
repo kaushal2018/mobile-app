@@ -9,11 +9,26 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   model: any = {};
+  error: any;
+  authenticationFlag: boolean = true;
   constructor(public authService: AuthService, private router: Router) {}
 
-  onSubmit() {
-    console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.model));
+  onSubmit(formdata) {
+    // console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.model));
+    if (formdata.valid) {
+      this.authService
+        .loginWithEmail(this.model.email, this.model.password)
+        .then(success => {
+          this.authService.sendToken(this.model.email);
+          this.router.navigate(['']);
+        })
+        .catch(err => {
+          this.error = err;
+          this.authenticationFlag = false;
+        });
+    }
   }
+
   loginGoogle() {
     this.authService.loginWithGoogle().then(data => {
       this.authService.sendToken(data.user.email);

@@ -1,3 +1,168 @@
-.input100 {
-  padding: 0 7px 0 7px !important;
+.form-control {
+  height: auto !important;
+}
+.custom-control {
+  text-align: right;
+}
+.registerlink {
+  display: block;
+}
+.card-signin {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.form-signin {
+  width: 100%;
+}
+
+.form-signin .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group > input,
+.form-group > label {
+  padding: var(--input-padding-y) var(--input-padding-x);
+}
+
+.form-group > label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  line-height: 1.5;
+  color: #495057;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  transition: all 0.1s ease-in-out;
+}
+
+.form-group input::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.form-group input:-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-group input::-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-group input::-moz-placeholder {
+  color: transparent;
+}
+
+.form-group input::placeholder {
+  color: transparent;
+}
+
+.form-group input:not(:placeholder-shown) {
+  padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+  padding-bottom: calc(var(--input-padding-y) / 3);
+}
+
+.form-group input:not(:placeholder-shown) ~ label {
+  padding-top: calc(var(--input-padding-y) / 3);
+  padding-bottom: calc(var(--input-padding-y) / 3);
+  font-size: 12px;
+  color: #777;
+}
+
+.btn-google {
+  color: white;
+  background-color: #ea4335;
+}
+.btn-facebook {
+  color: white;
+  background-color: #3b5998;
+}
+.btn-twitter {
+  color: white;
+  background-color: #38a1f3;
+}
+
+.divider-text {
+  position: relative;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.divider-text span {
+  padding: 7px;
+  font-size: 12px;
+  position: relative;
+  z-index: 2;
+}
+.divider-text:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  top: 55%;
+  left: 0;
+  z-index: 1;
+}
+.error {
+  width: 100%;
+  margin-bottom: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+.jumbotron {
+  padding: 0;
+  margin: 0;
+  background-color: #6c757d;
+  border-radius: 0;
+}
+/* .card-left {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100%;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.card-right {
+  left: 29%;
+} */
+@media (max-width: 823px) {
+  .card-signin {
+    box-shadow: none;
+  }
+  /* .card-left {
+    display: none;
+  }
+  .card-right {
+    left: 0%;
+  } */
+  .jumbotron {
+    background: none;
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .card-signin {
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  }
 }

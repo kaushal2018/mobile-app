@@ -129,10 +129,46 @@
 .invalid-feedback {
   margin-left: 1.6rem;
 }
-
+.error {
+  width: 100%;
+  margin-bottom: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
+  margin-left: 1.6rem;
+}
+.jumbotron {
+  padding: 0;
+  margin: 0;
+  background-color: #6c757d;
+  border-radius: 0;
+}
+/* .card-left {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100%;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.card-right {
+  left: 29%;
+} */
 @media (max-width: 823px) {
   .card-signin {
     box-shadow: none;
+  }
+  /* .card-left {
+    display: none;
+  }
+  .card-right {
+    left: 0%;
+  } */
+  .jumbotron {
+    background: none;
   }
 }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {

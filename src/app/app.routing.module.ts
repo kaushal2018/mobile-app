@@ -1,6 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ForgotpassComponent } from './components/forgotpass/forgotpass.component';
 import { HomeComponent } from './components/home/home.component';
@@ -9,7 +8,6 @@ import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'signin', component: SigninComponent },
   {
     path: '',
     component: HomeComponent,
