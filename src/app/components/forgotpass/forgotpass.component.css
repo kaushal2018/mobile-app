@@ -132,7 +132,7 @@
   background-color: #6c757d;
   border-radius: 0;
 }
-/* .card-left {
+.card-left {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -146,17 +146,17 @@
 }
 .card-right {
   left: 29%;
-} */
+}
 @media (max-width: 823px) {
   .card-signin {
     box-shadow: none;
   }
-  /* .card-left {
+  .card-left {
     display: none;
   }
   .card-right {
     left: 0%;
-  } */
+  }
   .jumbotron {
     background: none;
   }
