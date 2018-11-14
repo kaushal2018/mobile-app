@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     if (formdata.valid) {
       this.authService
         .loginWithEmail(this.model.email, this.model.password)
-        .then(success => {
+        .then(data => {
           this.authService.sendToken(this.model.email);
           this.router.navigate(['']);
         })
@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
 
   loginGoogle() {
     this.authService.loginWithGoogle().then(data => {
+      console.log(data);
       this.authService.sendToken(data.user.email);
       this.router.navigate(['']);
     });
