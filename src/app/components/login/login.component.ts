@@ -11,7 +11,15 @@ export class LoginComponent implements OnInit {
   model: any = {};
   error: any;
   authenticationFlag: boolean = true;
-  constructor(public authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, private router: Router) {
+    this.authService.afAuth.authState.subscribe(auth => {
+      if (auth == null) {
+        this.router.navigate(['login']);
+      } else {
+        this.router.navigate(['']);
+      }
+    });
+  }
 
   onSubmit(formdata) {
     // console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.model));
@@ -31,7 +39,6 @@ export class LoginComponent implements OnInit {
 
   loginGoogle() {
     this.authService.loginWithGoogle().then(data => {
-      console.log(data);
       this.authService.sendToken(data.user.email);
       this.router.navigate(['']);
     });

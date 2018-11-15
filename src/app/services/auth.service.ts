@@ -8,12 +8,23 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  authState: any = null;
   constructor(
     public db: AngularFireDatabase,
     public afAuth: AngularFireAuth,
     private router: Router
   ) {}
+
+  getCurrentUser() {
+    return new Promise<any>((resolve, reject) => {
+      var user = firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          resolve(user);
+        } else {
+          reject('No user logged in');
+        }
+      });
+    });
+  }
 
   sendToken(token: string) {
     localStorage.setItem('LoggedInUser', token);
@@ -24,13 +35,25 @@ export class AuthService {
   }
 
   isLoggednIn() {
-    return this.getToken() !== null;
+    return this.getCurrentUser().then(
+      user => {
+        if (user.email != this.getToken()) {
+          this.sendToken(user.email);
+          return true;
+        } else {
+          return true;
+        }
+      },
+      err => {
+        return false;
+      }
+    );
   }
 
   logout() {
     localStorage.removeItem('LoggedInUser');
     this.afAuth.auth.signOut();
-    this.router.navigate(['signin']);
+    this.router.navigate(['login']);
   }
 
   loginWithGoogle() {

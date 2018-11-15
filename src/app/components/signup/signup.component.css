@@ -29,6 +29,7 @@
   letter-spacing: 0.1rem;
   font-weight: bold;
   transition: all 0.2s;
+  padding: 1rem;
 }
 
 .form-group {
