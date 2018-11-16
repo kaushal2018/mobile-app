@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from './services/auth.service';
@@ -9,11 +9,23 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   title = 'app';
-  constructor(private titleService: Title, private router: Router) {
+  constructor(
+    private titleService: Title,
+    private router: Router,
+    public authService: AuthService,
+    private renderer: Renderer2
+  ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.title = event.url.substr(1) !== '' ? event.url.substr(1) : 'Home';
-        this.titleService.setTitle(this.title.toUpperCase());
+        this.titleService.setTitle('App-' + this.title);
+        this.authService.afAuth.authState.subscribe(auth => {
+          if (auth != null) {
+            this.renderer.addClass(document.body, 'body-white');
+          } else {
+            this.renderer.removeClass(document.body, 'body-white');
+          }
+        });
       }
     });
   }

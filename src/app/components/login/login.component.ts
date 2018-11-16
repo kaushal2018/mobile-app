@@ -11,15 +11,7 @@ export class LoginComponent implements OnInit {
   model: any = {};
   error: any;
   authenticationFlag: boolean = true;
-  constructor(public authService: AuthService, private router: Router) {
-    this.authService.afAuth.authState.subscribe(auth => {
-      if (auth == null) {
-        this.router.navigate(['login']);
-      } else {
-        this.router.navigate(['']);
-      }
-    });
-  }
+  constructor(public authService: AuthService, private router: Router) {}
 
   onSubmit(formdata) {
     // console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.model));
@@ -27,7 +19,7 @@ export class LoginComponent implements OnInit {
       this.authService
         .loginWithEmail(this.model.email, this.model.password)
         .then(data => {
-          this.authService.sendToken(this.model.email);
+          this.authService.sendToken(JSON.stringify(data.user));
           this.router.navigate(['']);
         })
         .catch(err => {
@@ -39,24 +31,30 @@ export class LoginComponent implements OnInit {
 
   loginGoogle() {
     this.authService.loginWithGoogle().then(data => {
-      this.authService.sendToken(data.user.email);
+      this.authService.sendToken(JSON.stringify(data.user));
       this.router.navigate(['']);
     });
   }
 
   loginFacebook() {
     this.authService.loginWithFacebook().then(data => {
-      this.authService.sendToken(data.user.email);
+      this.authService.sendToken(JSON.stringify(data.user));
       this.router.navigate(['']);
     });
   }
 
   loginTwitter() {
     this.authService.loginWithTwitter().then(data => {
-      this.authService.sendToken(data.user.email);
+      this.authService.sendToken(JSON.stringify(data.user));
       this.router.navigate(['']);
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.afAuth.authState.subscribe(auth => {
+      if (auth != null) {
+        this.router.navigate(['']);
+      }
+    });
+  }
 }

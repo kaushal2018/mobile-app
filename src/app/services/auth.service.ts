@@ -2,17 +2,12 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(
-    public db: AngularFireDatabase,
-    public afAuth: AngularFireAuth,
-    private router: Router
-  ) {}
+  constructor(public db: AngularFireDatabase, public afAuth: AngularFireAuth) {}
 
   getCurrentUser() {
     return new Promise<any>((resolve, reject) => {
@@ -31,14 +26,17 @@ export class AuthService {
   }
 
   getToken() {
-    return localStorage.getItem('LoggedInUser');
+    // return localStorage.getItem('LoggedInUser');
+    return localStorage.getItem('LoggedInUser') != null
+      ? JSON.parse(localStorage.getItem('LoggedInUser'))['email']
+      : null;
   }
 
   isLoggednIn() {
     return this.getCurrentUser().then(
       user => {
         if (user.email != this.getToken()) {
-          this.sendToken(user.email);
+          this.sendToken(JSON.stringify(user));
           return true;
         } else {
           return true;
@@ -53,7 +51,6 @@ export class AuthService {
   logout() {
     localStorage.removeItem('LoggedInUser');
     this.afAuth.auth.signOut();
-    this.router.navigate(['login']);
   }
 
   loginWithGoogle() {

@@ -12,7 +12,9 @@ body {
   background: -webkit-linear-gradient(to right, #0052d4, #65c7f7, #9cecfb);
   background: linear-gradient(to right, #0052d4, #65c7f7, #9cecfb);
 }
-
+.body-white {
+  background: none;
+}
 @media (max-width: 823px) {
   body {
     background: none;

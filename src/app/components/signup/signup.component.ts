@@ -31,5 +31,11 @@ export class SignupComponent implements OnInit {
         });
     }
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.afAuth.authState.subscribe(auth => {
+      if (auth != null) {
+        this.router.navigate(['']);
+      }
+    });
+  }
 }
