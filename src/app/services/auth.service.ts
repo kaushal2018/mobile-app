@@ -7,7 +7,16 @@ import * as firebase from 'firebase/app';
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(public db: AngularFireDatabase, public afAuth: AngularFireAuth) {}
+  public isUserLoggednIn: boolean = false;
+  constructor(public db: AngularFireDatabase, public afAuth: AngularFireAuth) {
+    this.afAuth.authState.subscribe(auth => {
+      if (auth != null) {
+        this.isUserLoggednIn = true;
+      } else {
+        this.isUserLoggednIn = false;
+      }
+    });
+  }
 
   getCurrentUser() {
     return new Promise<any>((resolve, reject) => {
@@ -22,20 +31,21 @@ export class AuthService {
   }
 
   sendToken(token: string) {
-    localStorage.setItem('LoggedInUser', token);
+    localStorage.setItem('UserToken', token);
   }
 
   getToken() {
-    // return localStorage.getItem('LoggedInUser');
-    return localStorage.getItem('LoggedInUser') != null
-      ? JSON.parse(localStorage.getItem('LoggedInUser'))['email']
+    return localStorage.getItem('UserToken') != null
+      ? JSON.parse(localStorage.getItem('UserToken'))['stsTokenManager'][
+          'refreshToken'
+        ]
       : null;
   }
 
   isLoggednIn() {
     return this.getCurrentUser().then(
       user => {
-        if (user.email != this.getToken()) {
+        if (user.refreshToken != this.getToken()) {
           this.sendToken(JSON.stringify(user));
           return true;
         } else {
@@ -49,8 +59,9 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('LoggedInUser');
     this.afAuth.auth.signOut();
+    localStorage.removeItem('UserToken');
+    this.isUserLoggednIn = false;
   }
 
   loginWithGoogle() {

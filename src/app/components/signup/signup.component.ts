@@ -17,12 +17,11 @@ export class SignupComponent implements OnInit {
   constructor(public authService: AuthService, private router: Router) {}
 
   onSubmit(formdata) {
-    // console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.user));
     if (formdata.valid) {
       this.authService
         .signupWithEmailAndPass(this.user.email, this.user.password)
-        .then(res => {
-          this.authService.sendToken(this.user.email);
+        .then(data => {
+          this.authService.sendToken(JSON.stringify(data.user));
           this.router.navigate(['']);
         })
         .catch(err => {

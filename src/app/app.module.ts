@@ -13,6 +13,9 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { HomeComponent } from './components/home/home.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
+import { LayoutComponent } from './ui/layout/layout.component';
+import { HeaderComponent } from './ui/header/header.component';
+import { FooterComponent } from './ui/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { LoginComponent } from './components/login/login.component';
     SignupComponent,
     ForgotpassComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    LayoutComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

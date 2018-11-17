@@ -1,0 +1,3 @@
+<app-header *ngIf="authService.isUserLoggednIn"></app-header>
+<ng-content></ng-content>
+<app-footer *ngIf="authService.isUserLoggednIn"></app-footer>

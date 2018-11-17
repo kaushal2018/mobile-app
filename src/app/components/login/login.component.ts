@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit {
   constructor(public authService: AuthService, private router: Router) {}
 
   onSubmit(formdata) {
-    // console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.model));
     if (formdata.valid) {
       this.authService
         .loginWithEmail(this.model.email, this.model.password)
